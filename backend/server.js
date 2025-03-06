@@ -10,13 +10,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Default Route
+app.get("/", (req, res) => {
+  res.send("Recipe Sharing Backend is Live! 🚀");
+});
+
+// Import Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/recipes", require("./routes/recipeRoutes"));
-app.get("/", (req, res) => {
-    res.send("<h2>Recipe Sharing Backend is Running! 🚀</h2>");
-  });
-  
 
-
+// Use PORT from environment variables or 5000
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
